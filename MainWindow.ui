@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Bone Mineral Density Application</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,5">
@@ -38,7 +38,7 @@
       <property name="currentIndex">
        <number>1</number>
       </property>
-      <widget class="QWidget" name="page">
+      <widget class="QWidget" name="page_load_volume">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -73,148 +73,20 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_2">
+      <widget class="PageConstructMesh" name="page_construct_mesh">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
          <width>247</width>
-         <height>615</height>
+         <height>591</height>
         </rect>
        </property>
        <attribute name="label">
         <string>2. Construct mesh</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Object edge</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Isovalues:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEdit">
-             <property name="placeholderText">
-              <string>Separated by comma</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_3">
-          <property name="title">
-           <string>Object skeleton</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_4">
-           <item>
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>Threshold:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_2">
-          <property name="title">
-           <string>Distribution</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_5">
-           <item>
-            <widget class="QLabel" name="label_4">
-             <property name="text">
-              <string>Minimum density:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
-           </item>
-           <item>
-            <widget class="QLabel" name="label_5">
-             <property name="text">
-              <string>Maximum density:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton">
-            <property name="text">
-             <string>Construct mesh</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="groupBox_4">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>200</height>
-           </size>
-          </property>
-          <property name="title">
-           <string>Loaded volume</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <widget class="QWidget" name="imageWidget" native="true"/>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
       </widget>
-      <widget class="QWidget" name="page_5">
+      <widget class="QWidget" name="page_segment_mesh">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -227,7 +99,7 @@
         <string>3. Segment mesh</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="page_6">
+      <widget class="QWidget" name="page_density_analysis">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -253,10 +125,10 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QStackedWidget" name="stackedWidget">
-         <widget class="QWidget" name="page_load_volume"/>
-         <widget class="QWidget" name="page_construct_mesh"/>
-         <widget class="QWidget" name="page_segment_mesh"/>
-         <widget class="QWidget" name="page_density_analysis"/>
+         <widget class="QWidget" name="stacked_load_volume"/>
+         <widget class="StackedConstructMesh" name="stacked_construct_mesh"/>
+         <widget class="QWidget" name="stacked_segment_mesh"/>
+         <widget class="QWidget" name="stacked_density_analysis"/>
         </widget>
        </item>
       </layout>
@@ -308,6 +180,20 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>PageConstructMesh</class>
+   <extends>QWidget</extends>
+   <header>PageConstructMesh.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StackedConstructMesh</class>
+   <extends>QWidget</extends>
+   <header>StackedConstructMesh.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
