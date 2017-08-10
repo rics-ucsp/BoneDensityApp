@@ -45,7 +45,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QWidget" name="stacked_construction_kmeshcm" native="true"/>
+       <widget class="QVTKWidget" name="stacked_construction_kmeshcm" native="true"/>
       </item>
      </layout>
     </widget>
@@ -57,7 +57,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QWidget" name="stacked_construction_kmeshim" native="true"/>
+       <widget class="QVTKWidget" name="stacked_construction_kmeshim" native="true"/>
       </item>
      </layout>
     </widget>
@@ -66,4 +66,11 @@
  </widget>
  <resources/>
  <connections/>
+ <customwidgets>
+  <customwidget>
+   <class>QVTKWidget</class>
+   <extends>QWidget</extends>
+   <header>QVTKWidget.h</header>
+  </customwidget>
+ </customwidgets>
 </ui>
