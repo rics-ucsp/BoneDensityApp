@@ -1,16 +1,6 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 
-// #include <vtkDataObjectToTable.h>
-// #include <vtkElevationFilter.h>
-// #include <vtkPolyDataMapper.h>
-// #include <vtkQtTableView.h>
-// #include <vtkRenderer.h>
-// #include <vtkRenderWindow.h>
-// #include <vtkSphereSource.h>
-// #include <vtkCubeSource.h>
-// #include <vtkSmartPointer.h>
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -19,23 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->toolBox->setCurrentIndex(0);
 
-//    vtkSmartPointer<vtkSphereSource> sphereSource = vtkSmartPointer<vtkSphereSource>::New();
-//    sphereSource->Update();
-//    vtkSmartPointer<vtkPolyDataMapper> sphereMapper = vtkSmartPointer<vtkPolyDataMapper>::New();
-//    sphereMapper->SetInputConnection(sphereSource->GetOutputPort());
-//    vtkSmartPointer<vtkActor> sphereActor = vtkSmartPointer<vtkActor>::New();
-//    sphereActor->SetMapper(sphereMapper);
- 
-//    vtkSmartPointer<vtkRenderer> leftRenderer = vtkSmartPointer<vtkRenderer>::New();
-//    leftRenderer->AddActor(sphereActor);
-
-//     ui->imageWidget->GetRenderWindow()->AddRenderer(leftRenderer);
+    // Connect construction signals
+    QObject::connect(ui->page_construct_mesh, &PageConstructMesh::constructMesh,
+                     ui->stacked_construct_mesh, &StackedConstructMesh::constructMesh);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
 
 void MainWindow::on_toolBox_currentChanged(int index)
 {

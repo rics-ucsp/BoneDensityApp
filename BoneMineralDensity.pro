@@ -24,12 +24,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        MainWindow.cpp
+        MainWindow.cpp \
+    PageConstructMesh.cpp \
+    StackedConstructMesh.cpp
 
 HEADERS += \
-        MainWindow.h
+        MainWindow.h \
+    PageConstructMesh.h \
+    StackedConstructMesh.h
 
 FORMS += \
-        MainWindow.ui
+        MainWindow.ui \
+    PageConstructMesh.ui \
+    StackedConstructMesh.ui
 
-# CONFIG += c++11
+CONFIG += c++11
