@@ -26,25 +26,31 @@ SOURCES += \
         main.cpp \
         MainWindow.cpp \
     PageConstructMesh.cpp \
-    StackedConstructMesh.cpp
+    StackedConstructMesh.cpp \
     PageDensityAnalysis.cpp \
     StackedDensityAnalysis.cpp \
-    WidgetAnalysisMeshItem.cpp
+    WidgetAnalysisMeshItem.cpp \
+    PageSegmentMesh.cpp \
+    StackedSegmentMesh.cpp
 
 HEADERS += \
         MainWindow.h \
     PageConstructMesh.h \
-    StackedConstructMesh.h
+    StackedConstructMesh.h \
     PageDensityAnalysis.h \
     StackedDensityAnalysis.h \
-    WidgetAnalysisMeshItem.h
+    WidgetAnalysisMeshItem.h \
+    PageSegmentMesh.h \
+    StackedSegmentMesh.h
 
 FORMS += \
         MainWindow.ui \
     PageConstructMesh.ui \
-    StackedConstructMesh.ui
+    StackedConstructMesh.ui \
     PageDensityAnalysis.ui \
     StackedDensityAnalysis.ui \
-    WidgetAnalysisMeshItem.ui
+    WidgetAnalysisMeshItem.ui \
+    PageSegmentMesh.ui \
+    StackedSegmentMesh.ui
 
 CONFIG += c++11

@@ -48,13 +48,13 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>1. Load volume</string>
+        <string>1. Cargar volumen</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="label">
           <property name="text">
-           <string>Your options goes here</string>
+           <string>Los parámetros van aquí</string>
           </property>
          </widget>
         </item>
@@ -83,10 +83,10 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>2. Construct mesh</string>
+        <string>2. Construcción de la malla</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="page_segment_mesh">
+      <widget class="PageSegmentMesh" name="page_segment_mesh">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -96,7 +96,7 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>3. Segment mesh</string>
+        <string>3. Segmentación de la malla</string>
        </attribute>
       </widget>
       <widget class="PageDensityAnalysis" name="page_density_analysis">
@@ -109,7 +109,7 @@
         </rect>
        </property>
        <attribute name="label">
-        <string>4. Density analysis</string>
+        <string>4. Análisis densitométrico</string>
        </attribute>
       </widget>
      </widget>
@@ -127,7 +127,7 @@
         <widget class="QStackedWidget" name="stackedWidget">
          <widget class="QWidget" name="stacked_load_volume"/>
          <widget class="StackedConstructMesh" name="stacked_construct_mesh"/>
-         <widget class="QWidget" name="stacked_segment_mesh"/>
+         <widget class="StackedSegmentMesh" name="stacked_segment_mesh"/>
          <widget class="StackedDensityAnalysis" name="stacked_density_analysis"/>
         </widget>
        </item>
@@ -203,6 +203,18 @@
    <class>StackedDensityAnalysis</class>
    <extends>QWidget</extends>
    <header>StackedDensityAnalysis.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PageSegmentMesh</class>
+   <extends>QWidget</extends>
+   <header>PageSegmentMesh.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StackedSegmentMesh</class>
+   <extends>QWidget</extends>
+   <header>StackedSegmentMesh.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
