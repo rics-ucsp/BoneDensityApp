@@ -36,7 +36,7 @@
        <number>0</number>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="page_load_volume">
        <property name="geometry">
@@ -99,7 +99,7 @@
         <string>3. Segment mesh</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="page_density_analysis">
+      <widget class="PageDensityAnalysis" name="page_density_analysis">
        <property name="geometry">
         <rect>
          <x>0</x>
@@ -128,7 +128,7 @@
          <widget class="QWidget" name="stacked_load_volume"/>
          <widget class="StackedConstructMesh" name="stacked_construct_mesh"/>
          <widget class="QWidget" name="stacked_segment_mesh"/>
-         <widget class="QWidget" name="stacked_density_analysis"/>
+         <widget class="StackedDensityAnalysis" name="stacked_density_analysis"/>
         </widget>
        </item>
       </layout>
@@ -191,6 +191,18 @@
    <class>StackedConstructMesh</class>
    <extends>QWidget</extends>
    <header>StackedConstructMesh.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PageDensityAnalysis</class>
+   <extends>QWidget</extends>
+   <header>PageDensityAnalysis.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StackedDensityAnalysis</class>
+   <extends>QWidget</extends>
+   <header>StackedDensityAnalysis.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
