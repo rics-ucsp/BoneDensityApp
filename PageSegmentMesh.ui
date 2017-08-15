@@ -1,38 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PageConstructMesh</class>
- <widget class="QWidget" name="PageConstructMesh">
+ <class>PageSegmentMesh</class>
+ <widget class="QWidget" name="PageSegmentMesh">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>395</width>
-    <height>675</height>
+    <width>400</width>
+    <height>352</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Borde del objecto</string>
+      <string>Borde</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="label_3">
         <property name="text">
          <string>Isovalores</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="construction_isovalues">
-        <property name="placeholderText">
-         <string>Separados por coma</string>
-        </property>
-       </widget>
+       <widget class="QLineEdit" name="segment_isovalues"/>
       </item>
      </layout>
     </widget>
@@ -40,47 +36,28 @@
    <item>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
-      <string>Esqueleto del objecto</string>
+      <string>Segmentos</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Número de regiones</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="segment_regions_number"/>
+      </item>
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Umbral</string>
+         <string>Número de materiales</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="construction_threshold_isovalues"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>Distribución de vértices</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Distancia mínima</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDoubleSpinBox" name="construction_minimum_distance"/>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Distancia máxima</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QDoubleSpinBox" name="construction_maximum_distance"/>
+       <widget class="QSpinBox" name="segment_materials_number"/>
       </item>
      </layout>
     </widget>
@@ -103,7 +80,7 @@
      <item>
       <widget class="QPushButton" name="pushButton">
        <property name="text">
-        <string>Construcción de la malla</string>
+        <string>Segmentación de la malla</string>
        </property>
       </widget>
      </item>
@@ -117,7 +94,7 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>257</height>
+       <height>40</height>
       </size>
      </property>
     </spacer>
