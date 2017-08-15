@@ -10,8 +10,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolBox->setCurrentIndex(0);
 
     // Connect construction signals
-//    QObject::connect(ui->page_construct_mesh, &PageConstructMesh::constructMesh,
-//                     ui->stacked_construct_mesh, &StackedConstructMesh::constructMesh);
+   QObject::connect(ui->page_construct_mesh, &PageConstructMesh::constructMesh,
+                    ui->stacked_construct_mesh, &StackedConstructMesh::constructMesh);
 }
 
 MainWindow::~MainWindow()
