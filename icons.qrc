@@ -1,0 +1,9 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file alias="analysis.png">analysis.png</file>
+    <file alias="eye_off.png">eye_off.png</file>
+    <file alias="eye_on.png">eye_on.png</file>
+    <file alias="select2d.png">select2d.png</file>
+    
+</qresource>
+</RCC>
