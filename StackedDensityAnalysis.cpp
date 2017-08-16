@@ -8,7 +8,6 @@ StackedDensityAnalysis::StackedDensityAnalysis(QWidget *parent) :
     ui->setupUi(this);
 }
 
-StackedDensityAnalysis::~StackedDensityAnalysis()
-{
+StackedDensityAnalysis::~StackedDensityAnalysis(){
     delete ui;
 }

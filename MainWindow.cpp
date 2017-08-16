@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
     // Connect construction signals
    QObject::connect(ui->page_construct_mesh, &PageConstructMesh::constructMesh,
                     ui->stacked_construct_mesh, &StackedConstructMesh::constructMesh);
+
+   QObject::connect(ui->page_load_volume, &PageImport::multiplanar_reconstruction,
+	   ui->stacked_load_volume, &StackedMultiplanarReconstruction::multiplanar_reconstruction);
 }
 
 MainWindow::~MainWindow()

@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>906</width>
-    <height>807</height>
+    <width>1121</width>
+    <height>850</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Bone Mineral Density Application</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout" stretch="2,5">
+   <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,5">
     <item>
      <widget class="QToolBox" name="toolBox">
       <property name="minimumSize">
@@ -36,50 +36,28 @@
        <number>0</number>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
-      <widget class="QWidget" name="page_load_volume">
+      <widget class="PageImport" name="page_load_volume">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>247</width>
-         <height>591</height>
+         <width>171</width>
+         <height>639</height>
         </rect>
        </property>
        <attribute name="label">
-        <string>1. Cargar volumen</string>
+        <string>1. Cargar Volumen</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Los parámetros van aquí</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
       </widget>
       <widget class="PageConstructMesh" name="page_construct_mesh">
        <property name="geometry">
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>247</width>
-         <height>591</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -91,8 +69,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>247</width>
-         <height>591</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -104,8 +82,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>247</width>
-         <height>591</height>
+         <width>98</width>
+         <height>28</height>
         </rect>
        </property>
        <attribute name="label">
@@ -125,7 +103,7 @@
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
         <widget class="QStackedWidget" name="stackedWidget">
-         <widget class="QWidget" name="stacked_load_volume"/>
+         <widget class="StackedMultiplanarReconstruction" name="stacked_load_volume"/>
          <widget class="StackedConstructMesh" name="stacked_construct_mesh"/>
          <widget class="StackedSegmentMesh" name="stacked_segment_mesh"/>
          <widget class="StackedDensityAnalysis" name="stacked_density_analysis"/>
@@ -141,8 +119,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>906</width>
-     <height>22</height>
+     <width>1121</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuLoad_volume">
@@ -215,6 +193,18 @@
    <class>StackedSegmentMesh</class>
    <extends>QWidget</extends>
    <header>StackedSegmentMesh.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PageImport</class>
+   <extends>QWidget</extends>
+   <header>pageimport.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StackedMultiplanarReconstruction</class>
+   <extends>QWidget</extends>
+   <header>stackedmultiplanarreconstruction.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
