@@ -14,6 +14,9 @@ class StackedSegmentMesh : public QWidget
 public:
     explicit StackedSegmentMesh(QWidget *parent = 0);
     ~StackedSegmentMesh();
+    
+    void segmentMesh();
+
 
 private:
     Ui::StackedSegmentMesh *ui;

@@ -30,6 +30,16 @@
       <item>
        <widget class="QLineEdit" name="segment_isovalues"/>
       </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Umbral de Similaridad</string>
+        </property>
+       </widget>
+      </item>
+     <item>
+       <widget class="QDoubleSpinBox" name="construction_threshold_isovalues"/>
+     </item>
      </layout>
     </widget>
    </item>
@@ -48,6 +58,13 @@
       </item>
       <item>
        <widget class="QSpinBox" name="segment_regions_number"/>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="Checkbox">
+        <property name="text">
+         <string>Agrupar por Materiales</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="label_2">

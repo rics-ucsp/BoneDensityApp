@@ -198,13 +198,13 @@
   <customwidget>
    <class>PageImport</class>
    <extends>QWidget</extends>
-   <header>pageimport.h</header>
+   <header>PageImport.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>StackedMultiplanarReconstruction</class>
    <extends>QWidget</extends>
-   <header>stackedmultiplanarreconstruction.h</header>
+   <header>StackedMultiplanarReconstruction.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -15,5 +15,5 @@ PageSegmentMesh::~PageSegmentMesh()
 
 void PageSegmentMesh::on_pushButton_clicked()
 {
-
+    emit segmentMesh();
 }
