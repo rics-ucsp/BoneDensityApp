@@ -42,6 +42,7 @@ public:
         renderer->SetBackground(background[0], background[1], background[2]);
     
         widget.GetRenderWindow()->AddRenderer(renderer);
+		renderer->Render();
         widget.show();
     }
 
