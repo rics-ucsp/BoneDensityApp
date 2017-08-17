@@ -10,10 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->toolBox->setCurrentIndex(0);
 
     // Connect construction signals
-   QObject::connect(ui->page_construct_mesh, &PageConstructMesh::constructMesh,
+    QObject::connect(ui->page_construct_mesh, &PageConstructMesh::constructMesh,
                     ui->stacked_construct_mesh, &StackedConstructMesh::constructMesh);
 
-   QObject::connect(ui->page_load_volume, &PageImport::multiplanar_reconstruction,
+    QObject::connect(   ui->page_segment_mesh, &PageSegmentMesh::segmentMesh,
+                        ui->stacked_segment_mesh, &StackedSegmentMesh::segmentMesh);
+
+    QObject::connect(ui->page_load_volume, &PageImport::multiplanar_reconstruction,
 	   ui->stacked_load_volume, &StackedMultiplanarReconstruction::multiplanar_reconstruction);
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility,
