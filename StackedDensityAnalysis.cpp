@@ -265,13 +265,13 @@ void StackedDensityAnalysis::init() {
 	archivosVtk.push_back("../Resources/knee_mesh_region_6.vtk");
 	archivosVtk.push_back("../Resources/knee_mesh_region_7.vtk");
 
-	colores.push_back(QColor(255, 255, 0));
-	colores.push_back(QColor(0, 255, 255));
+	colores.push_back(QColor(255, 0, 0));
+	colores.push_back(QColor(0, 0, 255));
+	colores.push_back(QColor(0, 255,0));
 	colores.push_back(QColor(255, 0, 255));
-	colores.push_back(QColor(125, 0, 255));
-	colores.push_back(QColor(255, 125, 255));
-	colores.push_back(QColor(0, 0, 0));
-	colores.push_back(QColor(255,255, 255));
+	colores.push_back(QColor(255, 255, 0));
+	colores.push_back(QColor(255, 68, 173));
+	colores.push_back(QColor(246, 36, 89));
 
 	
 	renderer = vtkSmartPointer<vtkRenderer>::New();
