@@ -2,7 +2,6 @@
 
 #include "StackedMultiplanarReconstruction.h"
 #include "ui_StackedMultiplanarReconstruction.h"
-#include <QMessageBox>
 
 #include <vtkRenderer.h>
 #include <vtkRenderWindow.h>
