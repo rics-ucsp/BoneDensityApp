@@ -15,6 +15,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
    QObject::connect(ui->page_load_volume, &PageImport::multiplanar_reconstruction,
 	   ui->stacked_load_volume, &StackedMultiplanarReconstruction::multiplanar_reconstruction);
+
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility,
+					ui->stacked_density_analysis, &StackedDensityAnalysis::visibility);
+
+   //connect(	ui->page_density_analysis, SIGNAL(&PageDensityAnalysis::visibility(bool*)),
+//			ui->stacked_density_analysis, SLOT(&StackedDensityAnalysis::visibility(bool*)));
 }
 
 MainWindow::~MainWindow()
