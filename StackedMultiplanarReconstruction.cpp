@@ -166,11 +166,11 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 	vtkSmartPointer<vtkJPEGReader> reader =		vtkSmartPointer<vtkJPEGReader>::New();
 	reader->SetDataByteOrderToLittleEndian();
 	//		jpegReader->SetFilePattern("");
-	reader->SetFilePrefix("C:/Users/tony/Desktop/jpg-knee");
+	reader->SetFilePrefix("C:/Users/tony/Desktop/knee-jpg");
 	//reader->SetDataSpacing(3.2, 3.2, 20);
 	//reader->SetDataSpacing(40, 40, 40);
 	reader->SetFilePattern("%s/CT-Knee.379x229x305_%03d.jpg");
-	reader->SetDataExtent(0, 379, 0, 229, 0, 305);
+	reader->SetDataExtent(0, 379, 0, 229, 0, 304);
 
 	/*vtkSmartPointer< vtkDICOMImageReader > reader = vtkSmartPointer< vtkDICOMImageReader >::New();
 	reader->SetDirectoryName(filename.c_str());*/
@@ -203,7 +203,7 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 		riw[i]->SetResliceModeToAxisAligned();
 		riw[i]->GetRenderer()->SetBackground(1, 0, 0);
 
-		int axis = this->riw[i]->GetSliceOrientation();
+		/*int axis = this->riw[i]->GetSliceOrientation();
 		double vup[3];
 		riw[i]->GetRenderer()->GetActiveCamera()->GetViewUp(vup);
 		double cameraPosition[3];
@@ -217,14 +217,16 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 
 		riw[i]->GetRenderer()->GetActiveCamera()->SetPosition(cameraPosition);
 		riw[i]->GetRenderer()->GetActiveCamera()->SetViewUp(vup);
-		riw[i]->GetRenderer()->ResetCameraClippingRange();
-		this->riw[i]->Render();
+		riw[i]->GetRenderer()->ResetCameraClippingRange();*/
+
+
+		//this->riw[i]->Render();
 
 		bounds[i].first = riw[i]->GetSliceMin();
 		bounds[i].second = riw[i]->GetSliceMax();
 
-		riw[i]->SetColorLevel(10);//127.5
-		riw[i]->SetColorWindow(255);//255
+		riw[i]->SetColorLevel(80);//127.5 //10
+		riw[i]->SetColorWindow(240);//255 // 255
 
 		riw[i]->GetRenderer()->ResetCamera();
 		riw[i]->SliceScrollOnMouseWheelOff();
@@ -255,9 +257,9 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 		color[i] = 1;
 		planeWidget[i]->GetPlaneProperty()->SetColor(color);
 
-		color[0] /= 4.0;
-		color[1] /= 4.0;
-		color[2] /= 4.0;
+		color[0] /= 2.0;
+		color[1] /= 2.0;
+		color[2] /= 2.0;
 		riw[i]->GetRenderer()->SetBackground(color);
 
 		planeWidget[i]->SetTexturePlaneProperty(ipwProp);
@@ -265,7 +267,9 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 		planeWidget[i]->SetResliceInterpolateToLinear();
 		planeWidget[i]->SetInputConnection(reader->GetOutputPort());
 		planeWidget[i]->SetPlaneOrientation(i);
-		planeWidget[i]->SetSliceIndex(imageDims[i] / 2);
+
+		//planeWidget[i]->SetSliceIndex(imageDims[i] / 2);
+		planeWidget[i]->SetSliceIndex(bounds[i].first);
 
 		planeWidget[i]->DisplayTextOn();
 		planeWidget[i]->SetDefaultRenderer(ren);
@@ -334,19 +338,40 @@ void StackedMultiplanarReconstruction::volume_rendering(vtkSmartPointer<vtkJPEGR
 	vtkSmartPointer<vtkVolumeProperty> volumeProperty = vtkSmartPointer<vtkVolumeProperty>::New();
 
 	vtkSmartPointer<vtkPiecewiseFunction> compositeOpacity = vtkSmartPointer<vtkPiecewiseFunction>::New();
-	/*compositeOpacity->AddPoint(0.0, 0.1);
-	compositeOpacity->AddPoint(80.0, 0.2);
-	compositeOpacity->AddPoint(255.0, 0.1);*/
+	//compositeOpacity->AddPoint(0.0, 0.1);
+	//compositeOpacity->AddPoint(80.0, 0.2);
+	//compositeOpacity->AddPoint(255.0, 0.1);
 
 	compositeOpacity->AddPoint(0.0, 0.0);
 	compositeOpacity->AddPoint(255, 1.0);
+
+	/*compositeOpacity->AddPoint(-3024, 0, 0.5, 0.0);
+	compositeOpacity->AddPoint(-1000, 0, 0.5, 0.0);
+	compositeOpacity->AddPoint(-500, 1.0, 0.33, 0.45);
+	compositeOpacity->AddPoint(3071, 1.0, 0.5, 0.0);*/
+	//compositeOpacity->AddPoint(255, 1.0);
+
 	volumeProperty->SetScalarOpacity(compositeOpacity);
 
 	vtkSmartPointer<vtkColorTransferFunction> color = vtkSmartPointer<vtkColorTransferFunction>::New();
 	color->AddRGBPoint(0.0, 0.0, 0.0, 1.0);
 	color->AddRGBPoint(40.0, 1.0, 0.0, 0.0);
 	color->AddRGBPoint(250, 1.0, 1.0, 1.0);
+
+	/*color->AddRGBPoint(-3024, 0, 0, 0, 0.5, 0.0);
+	color->AddRGBPoint(-1000, .62, .36, .18, 0.5, 0.0);
+	color->AddRGBPoint(-500, .88, .60, .29, 0.33, 0.45);
+	color->AddRGBPoint(3071, .83, .66, 1, 0.5, 0.0);*/
 	volumeProperty->SetColor(color);
+
+
+
+	/*volumeProperty->ShadeOn();
+	volumeProperty->SetAmbient(0.1);
+	volumeProperty->SetDiffuse(0.9);
+	volumeProperty->SetSpecular(0.2);
+	volumeProperty->SetSpecularPower(10.0);
+	volumeProperty->SetScalarOpacityUnitDistance(0.8919);*/
 
 	vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New();
 	volume->SetMapper(volumeMapper);
@@ -362,9 +387,14 @@ void StackedMultiplanarReconstruction::volume_rendering(vtkSmartPointer<vtkJPEGR
 	double *c = volume->GetCenter();
 	camera->SetFocalPoint(c[0], c[1], c[2]);
 	//camera->SetPosition(c[0], c[1] + riw[1]->GetSliceMax() / 2 + 300, c[2]);
-	camera->SetPosition(c[0], c[1] + riw[1]->GetSliceMax(), c[2]);
+	camera->SetPosition(c[0], c[1] + riw[1]->GetSliceMax() + 600, c[2]);
 
-	camera->SetViewUp(0, 0, -1);
+
+	//camera->SetPosition(c[0], c[1] + riw[1]->GetSliceMax(), c[2]);
+
+	//camera->SetViewUp(0, 0, -1);
+
+	camera->SetViewUp(0, 0, 1);
 
 	this->ui->view4->GetRenderWindow()->Render();
 }
