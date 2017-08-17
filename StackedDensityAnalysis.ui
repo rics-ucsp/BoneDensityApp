@@ -21,7 +21,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="QWidget" name="analysis_axial_view" native="true"/>
+       <widget class="QVTKWidget" name="view_dicom_1"/>
       </item>
      </layout>
     </widget>
@@ -33,7 +33,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
-       <widget class="QWidget" name="analysis_sagital_view" native="true"/>
+       <widget class="QVTKWidget" name="view_dicom_2"/>
       </item>
      </layout>
     </widget>
