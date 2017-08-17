@@ -69,7 +69,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_5">
            <item>
-            <widget class="QPushButton" name="btn_view">
+            <widget class="QPushButton" name="btnView1">
              <property name="text">
               <string/>
              </property>
@@ -80,21 +80,21 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_5">
+            <widget class="QPushButton" name="btnColor1">
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QSlider" name="horizontalSlider">
+            <widget class="QSlider" name="sldOpacity1">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="btn_color">
+            <widget class="QPushButton" name="btnAnalysis1">
              <property name="text">
               <string>Analizar Región</string>
              </property>
@@ -109,7 +109,7 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_4">
            <item>
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="btnView2">
              <property name="text">
               <string/>
              </property>
@@ -120,61 +120,21 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_6">
+            <widget class="QPushButton" name="btnColor2">
              <property name="text">
               <string/>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QSlider" name="horizontalSlider_2">
+            <widget class="QSlider" name="sldOpacity2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_3">
-             <property name="text">
-              <string>Analizar Región</string>
-             </property>
-             <property name="icon">
-              <iconset resource="icons.qrc">
-               <normaloff>:/analysis.png</normaloff>:/analysis.png</iconset>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <widget class="QPushButton" name="pushButton_8">
-             <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset resource="icons.qrc">
-               <normaloff>:/eye_on.png</normaloff>:/eye_on.png</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_7">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="horizontalSlider_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_9">
+            <widget class="QPushButton" name="btnAnalysis2">
              <property name="text">
               <string>Analizar Región</string>
              </property>
@@ -193,6 +153,9 @@
     </widget>
    </item>
    <item>
+    <widget class="WidgetAnalysisMeshItem" name="listWidget"/>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -207,6 +170,13 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WidgetAnalysisMeshItem</class>
+   <extends>QListWidget</extends>
+   <header location="global">widgetanalysismeshitem.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="icons.qrc"/>
  </resources>
