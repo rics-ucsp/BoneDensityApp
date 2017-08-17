@@ -32,6 +32,9 @@
         <property name="placeholderText">
          <string>Separados por coma</string>
         </property>
+        <property name="text">
+        <string>10,125</string>
+        </property>
        </widget>
       </item>
      </layout>
@@ -51,7 +54,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="construction_threshold_isovalues"/>
+       <widget class="QDoubleSpinBox" name="construction_threshold_isovalues">
+            <property name="value">
+                <double>0.32</double>
+            </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -70,7 +77,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="construction_minimum_distance"/>
+       <widget class="QDoubleSpinBox" name="construction_minimum_distance">
+            <property name="value">
+            <double>10.0</double>
+            </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="label_4">
@@ -80,7 +91,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="construction_maximum_distance"/>
+       <widget class="QDoubleSpinBox" name="construction_maximum_distance">
+            <property name="value">
+            <double>90.5</double>
+            </property>
+        </widget>
       </item>
      </layout>
     </widget>

@@ -17,11 +17,11 @@
    <item row="0" column="0">
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Object edge</string>
+      <string>Borde del objeto</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QWidget" name="stacked_construction_edge" native="true"/>
+       <widget class="QVTKWidget" name="stacked_construction_edge" native="true"/>
       </item>
      </layout>
     </widget>
@@ -29,11 +29,11 @@
    <item row="0" column="1">
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
-      <string>Object skeleton</string>
+      <string>Densidad en el borde</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QWidget" name="stacked_construction_skeleton" native="true"/>
+       <widget class="QVTKWidget" name="stacked_construction_skeleton" native="true"/>
       </item>
      </layout>
     </widget>
@@ -41,7 +41,7 @@
    <item row="1" column="0">
     <widget class="QGroupBox" name="groupBox_3">
      <property name="title">
-      <string>kMeshCM</string>
+      <string>Nube de puntos</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
@@ -53,7 +53,7 @@
    <item row="1" column="1">
     <widget class="QGroupBox" name="groupBox_4">
      <property name="title">
-      <string>kMeshIm</string>
+      <string>kMesh</string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
