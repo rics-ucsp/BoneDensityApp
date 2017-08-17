@@ -8,6 +8,10 @@
 #include "vtkResliceImageViewer.h"
 #include "vtkImagePlaneWidget.h"
 
+
+#include <vtkTIFFReader.h>
+#include <vtkJPEGReader.h>
+
 #include <QWidget>
 #include <string>
 
@@ -29,7 +33,7 @@ private slots:
 	void update_scroll_axial();
 	void update_scroll_sagittal();
 	void update_scroll_coronal();
-	void volume_rendering(vtkSmartPointer<vtkDICOMImageReader> &reader);
+	void volume_rendering(vtkSmartPointer<vtkJPEGReader> &reader);
 
 protected:
 	vtkSmartPointer< vtkResliceImageViewer > riw[3];
