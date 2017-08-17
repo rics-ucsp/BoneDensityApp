@@ -2,7 +2,7 @@
 
 #include "StackedMultiplanarReconstruction.h"
 #include "ui_StackedMultiplanarReconstruction.h"
-#include <QtWidgets/QMessageBox >
+#include <QMessageBox>
 
 #include <vtkRenderer.h>
 #include <vtkRenderWindow.h>
@@ -55,6 +55,8 @@
 #include <vtkImageSliceMapper.h>
 #include <vtkImageSlice.h>
 #include <vtkImageProperty.h>
+
+
 
 class vtkResliceCursorCallback : public vtkCommand
 {
@@ -162,8 +164,18 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 	Msgbox.setText(QString::fromStdString(filename));
 	Msgbox.exec();*/
 
-	vtkSmartPointer< vtkDICOMImageReader > reader = vtkSmartPointer< vtkDICOMImageReader >::New();
-	reader->SetDirectoryName(filename.c_str());
+	vtkSmartPointer<vtkJPEGReader> reader =		vtkSmartPointer<vtkJPEGReader>::New();
+	reader->SetDataByteOrderToLittleEndian();
+	//		jpegReader->SetFilePattern("");
+	reader->SetFilePrefix("C:/Users/tony/Desktop/jpg-knee");
+	//reader->SetDataSpacing(3.2, 3.2, 20);
+	//reader->SetDataSpacing(40, 40, 40);
+	reader->SetFilePattern("%s/CT-Knee.379x229x305_%03d.jpg");
+	reader->SetDataExtent(0, 379, 0, 229, 0, 305);
+
+	/*vtkSmartPointer< vtkDICOMImageReader > reader = vtkSmartPointer< vtkDICOMImageReader >::New();
+	reader->SetDirectoryName(filename.c_str());*/
+
 	reader->Update();
 	int imageDims[3];
 	reader->GetOutput()->GetDimensions(imageDims);
@@ -181,9 +193,9 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 	riw[1]->SetupInteractor(this->ui->view3->GetRenderWindow()->GetInteractor());
 
 	std::vector<std::pair<int, int>> bounds(3, std::make_pair(0, 0));
+
 	for (int i = 0; i < 3; i++) {
-		vtkResliceCursorLineRepresentation *rep =
-			vtkResliceCursorLineRepresentation::SafeDownCast(riw[i]->GetResliceCursorWidget()->GetRepresentation());
+		vtkResliceCursorLineRepresentation *rep = vtkResliceCursorLineRepresentation::SafeDownCast(riw[i]->GetResliceCursorWidget()->GetRepresentation());
 		riw[i]->SetResliceCursor(riw[i]->GetResliceCursor());
 		rep->GetResliceCursorActor()->GetCursorAlgorithm()->SetReslicePlaneNormal(i);
 
@@ -256,7 +268,6 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 		planeWidget[i]->SetPlaneOrientation(i);
 		planeWidget[i]->SetSliceIndex(imageDims[i] / 2);
 
-
 		planeWidget[i]->DisplayTextOn();
 		planeWidget[i]->SetDefaultRenderer(ren);
 		planeWidget[i]->SetWindowLevel(1358, -27);
@@ -281,7 +292,6 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 	}
 
 	volume_rendering(reader);
-
 	this->ui->view1->show();
 	this->ui->view2->show();
 	this->ui->view3->show();
@@ -314,8 +324,7 @@ void StackedMultiplanarReconstruction::update_scroll_coronal() {
 	this->ui->view4->GetInteractor()->Render();
 }
 
-
-void StackedMultiplanarReconstruction::volume_rendering(vtkSmartPointer<vtkDICOMImageReader> &reader) {
+void StackedMultiplanarReconstruction::volume_rendering(vtkSmartPointer<vtkJPEGReader> &reader) {
 	vtkSmartPointer<vtkImageData> volumeData = vtkSmartPointer<vtkImageData>::New();
 	volumeData->DeepCopy(reader->GetOutput());
 
@@ -343,21 +352,20 @@ void StackedMultiplanarReconstruction::volume_rendering(vtkSmartPointer<vtkDICOM
 	vtkSmartPointer<vtkVolume> volume = vtkSmartPointer<vtkVolume>::New();
 	volume->SetMapper(volumeMapper);
 	volume->SetProperty(volumeProperty);
-
-
+	
 
 	// VTK Renderer
 	vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
-	//renderer->SetBackground(0.5f, 0.5f, 1.0f);
 	renderer->SetBackground(0.0f, 0.0f, 0.0f);
 
 	ren->AddViewProp(volume);
 	vtkCamera *camera = ren->GetActiveCamera();
 	double *c = volume->GetCenter();
 	camera->SetFocalPoint(c[0], c[1], c[2]);
-	camera->SetPosition(c[0], c[1] + riw[1]->GetSliceMax() / 2 + 300, c[2]);
-	camera->SetViewUp(0, 0, -1);
+	//camera->SetPosition(c[0], c[1] + riw[1]->GetSliceMax() / 2 + 300, c[2]);
+	camera->SetPosition(c[0], c[1] + riw[1]->GetSliceMax(), c[2]);
 
+	camera->SetViewUp(0, 0, -1);
 
 	this->ui->view4->GetRenderWindow()->Render();
 }

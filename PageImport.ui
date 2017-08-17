@@ -18,12 +18,12 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>110</width>
+     <width>81</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Ola k ase</string>
+    <string>Imagen médica</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnLoadVolume">
