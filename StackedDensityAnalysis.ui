@@ -45,7 +45,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_3">
       <item>
-       <widget class="QWidget" name="analysis_coronal_view" native="true"/>
+       <widget class="QVTKWidget" name="view_dicom_3"/>
       </item>
      </layout>
     </widget>
@@ -57,13 +57,20 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <widget class="QWidget" name="analysis_3d_model" native="true"/>
+       <widget class="QVTKWidget" name="view_volum"/>
       </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QVTKWidget</class>
+   <extends>QWidget</extends>
+   <header>QVTKWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

@@ -31,6 +31,30 @@ public:
     
         vtkSmartPointer<vtkDataSetMapper> mapper    =	vtkSmartPointer<vtkDataSetMapper>::New();
         mapper->SetInputConnection(reader->GetOutputPort());
+		
+		//--------------------color mapping------
+
+		double bounds[6];
+		reader->GetOutput()->GetBounds(bounds);
+
+		double minBoxPoint[3];
+		double maxBoxPoint[3];
+		minBoxPoint[0] = (bounds[1] - bounds[0]) / 2.0 + bounds[0];
+		minBoxPoint[1] = (bounds[3] - bounds[2]) / 2.0 + bounds[2];
+		minBoxPoint[2] = (bounds[5] - bounds[4]) / 2.0 + bounds[4];
+		maxBoxPoint[0] = bounds[1];
+		maxBoxPoint[1] = bounds[3];
+		maxBoxPoint[2] = bounds[5];
+
+		vtkSmartPointer<vtkLookupTable> lut1 = vtkSmartPointer<vtkLookupTable>::New();
+		lut1->SetHueRange(.667, 0);
+
+		mapper->SetScalarRange(reader->GetOutput()->GetScalarRange());
+		mapper->SetLookupTable(lut1);
+		mapper->SetColorModeToMapScalars();
+
+		//-------------------
+
       
         vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
         actor->GetProperty()->SetColor(color[0],color[1], color[2]);

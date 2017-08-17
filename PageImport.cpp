@@ -18,7 +18,7 @@ PageImport::~PageImport()
 void PageImport::on_btnLoadVolume_clicked(){
 	QString folderNameDCM = QFileDialog::getExistingDirectory(this, tr("Open DCM Folder"), QDir::currentPath());
 	std::string filename = folderNameDCM.toStdString();
-
 	emit multiplanar_reconstruction(filename);
+
 }
 
