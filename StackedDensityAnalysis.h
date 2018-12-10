@@ -29,6 +29,55 @@
 #include <vtkImageData.h>
 
 
+//para ROI
+#include <vtkImageClip.h>
+#include <vtkMath.h>
+
+class vtkBorderCallback2 : public vtkCommand
+{
+public:
+	vtkBorderCallback2() { std::cout << "Callback"; }
+
+	static vtkBorderCallback2 *New()
+	{
+		return new vtkBorderCallback2;
+	}
+
+	virtual void Execute(vtkObject *caller, unsigned long, void*)
+	{
+		std::cout << "execute";
+		vtkBorderWidget *borderWidget = reinterpret_cast<vtkBorderWidget*>(caller);
+
+		// Get the world coordinates of the two corners of the box
+		vtkCoordinate* lowerLeftCoordinate =
+			static_cast<vtkBorderRepresentation*>
+			(borderWidget->GetRepresentation())->GetPositionCoordinate();
+		double* lowerLeft =
+			lowerLeftCoordinate->GetComputedWorldValue(this->LeftRenderer);
+		std::cout << "Lower left coordinate: "
+				   << vtkMath::Round(lowerLeft[0])  << ", "
+				   << vtkMath::Round(lowerLeft[1]) << std::endl;
+				   //<< vtkMath::Round(lowerLeft[2]) << std::endl;
+
+		vtkCoordinate* upperRightCoordinate =
+			static_cast<vtkBorderRepresentation*>
+			(borderWidget->GetRepresentation())->GetPosition2Coordinate();
+		double* upperRight =
+			upperRightCoordinate->GetComputedWorldValue(this->LeftRenderer);
+		std::cout << "\t Upper right coordinate: "
+			<< vtkMath::Round(upperRight[0])  << ", "
+			//<< vtkMath::Round(upperRight[1]) << ", "
+			<< vtkMath::Round(upperRight[1]) << std::endl;
+	}
+	void SetLeftRenderer(vtkSmartPointer<vtkRenderer> renderer) { this->LeftRenderer = renderer; }
+
+private:
+	vtkSmartPointer<vtkRenderer>   LeftRenderer;
+
+};
+
+
+
 namespace Ui {
 class StackedDensityAnalysis;
 }
@@ -46,34 +95,43 @@ public:
 	void multiplanar_reconstruction(std::string filename);
 
 	void selection2D();
+	void analisis2D();
+	void analisisTemplate(string name);
 
 	void visibility1(bool*);
 	void opacity1(int);
 	void colority1(QColor);
+	void analisis1();
 
 	void visibility2(bool*);
 	void opacity2(int);
 	void colority2(QColor);
+	void analisis2();
 
 	void visibility3(bool*);
 	void opacity3(int);
 	void colority3(QColor);
+	void analisis3();
 
 	void visibility4(bool*);
 	void opacity4(int);
 	void colority4(QColor);
+	void analisis4();
 
 	void visibility5(bool*);
 	void opacity5(int);
 	void colority5(QColor);
+	void analisis5();
 
 	void visibility6(bool*);
 	void opacity6(int);
 	void colority6(QColor);
+	void analisis6();
 
 	void visibility7(bool*);
 	void opacity7(int);
 	void colority7(QColor);
+	void analisis7();
 
 private:
     Ui::StackedDensityAnalysis *ui;
@@ -120,6 +178,13 @@ protected:
 
 	bool visible;
 	
+
+	vtkSmartPointer<vtkJPEGReader> readerJPG2;
+	vtkSmartPointer<vtkImageActor> imageActor;
+	vtkSmartPointer<vtkRenderWindow> renderWindow;
+	vtkSmartPointer<vtkBorderWidget> borderWidget;
+	vtkSmartPointer<vtkRenderer> leftRenderer;
+	vtkSmartPointer<vtkBorderCallback2> borderCallback;
 
 };
 
