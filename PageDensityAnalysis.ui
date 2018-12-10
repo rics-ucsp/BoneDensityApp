@@ -21,18 +21,7 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QPushButton" name="btn2Dselection">
-        <property name="text">
-         <string>Seleccionar 2D</string>
-        </property>
-        <property name="icon">
-         <iconset resource="icons.qrc">
-          <normaloff>:/select2d.png</normaloff>:/select2d.png</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="btn2Danalisis">
         <property name="text">
          <string>Analizar región</string>
         </property>
