@@ -1,3 +1,4 @@
+
 cmake_minimum_required(VERSION 2.8)
  
 if(POLICY CMP0020)
@@ -5,7 +6,12 @@ if(POLICY CMP0020)
 endif()
  
 PROJECT(BoneMineralDensity)
- 
+
+FIND_PACKAGE( OpenCV REQUIRED )     
+INCLUDE_DIRECTORIES( ${OpenCV_INCLUDE_DIRS} )
+
+
+
 find_package(VTK REQUIRED)
 include(${VTK_USE_FILE})
  
@@ -33,6 +39,7 @@ if(${VTK_VERSION} VERSION_GREATER "6" AND VTK_QT_VERSION VERSION_GREATER "4")
     ${CXX_FILES} ${UISrcs} ${QT_WRAP} ${RCSrcs})
   qt5_use_modules(BoneMineralDensity Core Gui)
   target_link_libraries(BoneMineralDensity ${VTK_LIBRARIES})
+  TARGET_LINK_LIBRARIES(BoneMineralDensity ${OpenCV_LIBS})         
 else()
   QT4_WRAP_UI(UISrcs ${UI_FILES})
   QT4_WRAP_CPP(MOCSrcs ${QT_WRAP})
