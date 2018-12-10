@@ -22,15 +22,22 @@ MainWindow::MainWindow(QWidget *parent) :
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::selection2D,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::selection2D);
 
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::analisis2D,
+	   +ui->stacked_density_analysis, &StackedDensityAnalysis::analisis2D);
+
+
    //1
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility1,
-					ui->stacked_density_analysis, &StackedDensityAnalysis::visibility1);
+		ui->stacked_density_analysis, &StackedDensityAnalysis::visibility1);
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::opacity1,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::opacity1);
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::colority1,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::colority1);
+
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::analisis1,
+	   ui->stacked_density_analysis, &StackedDensityAnalysis::analisis1);
 
    //2
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility2,
@@ -41,6 +48,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::colority2,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::colority2);
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::analisis2,
+	   ui->stacked_density_analysis, &StackedDensityAnalysis::analisis2);
 
    //3
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility3,
@@ -51,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::colority3,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::colority3);
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::analisis3,
+	   ui->stacked_density_analysis, &StackedDensityAnalysis::analisis3);
 
    //4
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility4,
@@ -61,6 +72,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::colority4,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::colority4);
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::analisis4,
+	   ui->stacked_density_analysis, &StackedDensityAnalysis::analisis4);
 
    //5
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility5,
@@ -71,6 +84,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::colority5,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::colority5);
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::analisis5,
+	   ui->stacked_density_analysis, &StackedDensityAnalysis::analisis5);
 
    //6
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility6,
@@ -81,6 +96,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::colority6,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::colority6);
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::analisis6,
+	   ui->stacked_density_analysis, &StackedDensityAnalysis::analisis6);
 
    //7
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::visibility7,
@@ -91,6 +108,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
    QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::colority7,
 	   ui->stacked_density_analysis, &StackedDensityAnalysis::colority7);
+   QObject::connect(ui->page_density_analysis, &PageDensityAnalysis::analisis7,
+	   ui->stacked_density_analysis, &StackedDensityAnalysis::analisis7);
 }
 
 MainWindow::~MainWindow()

@@ -39,22 +39,28 @@ PageDensityAnalysis::~PageDensityAnalysis()
 
 
 
-void PageDensityAnalysis::on_btn2Dselection_clicked() {
+/*void PageDensityAnalysis::on_btn2Dselection_clicked() {
 
 	emit selection2D();
 
+}*/
+
+void PageDensityAnalysis::on_btn2Danalisis_clicked() {
+	
+	emit analisis2D();
 }
+
 
 void PageDensityAnalysis::on_btnView1_clicked() {
 
-	ui->btnView1->setIcon(QIcon("eye_off.png"));
+	ui->btnView1->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	emit visibility1(visible1);
 	
 	if (*visible1 == false) {	
-		ui->btnView1->setIcon(QIcon("eye_off.png"));
+		ui->btnView1->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	}
 	else {
-		ui->btnView1->setIcon(QIcon("eye_on.png"));
+		ui->btnView1->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_on.png"));
 	}
 }
 
@@ -76,18 +82,22 @@ void PageDensityAnalysis::on_btnColor1_clicked() {
 	emit colority1(newColor);
 
 }
+void PageDensityAnalysis::on_btnAnalysis1_clicked() {
+	emit analisis1();
+}
+
 
 
 void PageDensityAnalysis::on_btnView2_clicked() {
 
-	ui->btnView2->setIcon(QIcon("eye_off.png"));
+	ui->btnView2->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	emit visibility2(visible2);
 
 	if (*visible2 == false) {
-		ui->btnView2->setIcon(QIcon("eye_off.png"));
+		ui->btnView2->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	}
 	else {
-		ui->btnView2->setIcon(QIcon("eye_on.png"));
+		ui->btnView2->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_on.png"));
 	}
 }
 
@@ -109,18 +119,22 @@ void PageDensityAnalysis::on_btnColor2_clicked() {
 	emit colority2(newColor);
 
 }
+void PageDensityAnalysis::on_btnAnalysis2_clicked() {
+	emit analisis2();
+}
+
 
 
 void PageDensityAnalysis::on_btnView3_clicked() {
 
-	ui->btnView3->setIcon(QIcon("eye_off.png"));
+	ui->btnView3->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	emit visibility3(visible3);
 
 	if (*visible3 == false) {
-		ui->btnView3->setIcon(QIcon("eye_off.png"));
+		ui->btnView3->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	}
 	else {
-		ui->btnView3->setIcon(QIcon("eye_on.png"));
+		ui->btnView3->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_on.png"));
 	}
 }
 
@@ -142,19 +156,22 @@ void PageDensityAnalysis::on_btnColor3_clicked() {
 	emit colority3(newColor);
 
 }
+void PageDensityAnalysis::on_btnAnalysis3_clicked() {
+	emit analisis3();
+}
 
 
 
 void PageDensityAnalysis::on_btnView4_clicked() {
 
-	ui->btnView4->setIcon(QIcon("eye_off.png"));
+	ui->btnView4->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	emit visibility4(visible4);
 
 	if (*visible4 == false) {
-		ui->btnView4->setIcon(QIcon("eye_off.png"));
+		ui->btnView4->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	}
 	else {
-		ui->btnView4->setIcon(QIcon("eye_on.png"));
+		ui->btnView4->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_on.png"));
 	}
 }
 
@@ -175,18 +192,22 @@ void PageDensityAnalysis::on_btnColor4_clicked() {
 
 	emit colority4(newColor);
 }
+void PageDensityAnalysis::on_btnAnalysis4_clicked() {
+	emit analisis4();
+}
+
 
 
 void PageDensityAnalysis::on_btnView5_clicked() {
 
-	ui->btnView5->setIcon(QIcon("eye_off.png"));
+	ui->btnView5->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	emit visibility5(visible5);
 
 	if (*visible5 == false) {
-		ui->btnView5->setIcon(QIcon("eye_off.png"));
+		ui->btnView5->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	}
 	else {
-		ui->btnView5->setIcon(QIcon("eye_on.png"));
+		ui->btnView5->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_on.png"));
 	}
 }
 
@@ -207,19 +228,23 @@ void PageDensityAnalysis::on_btnColor5_clicked() {
 
 	emit colority5(newColor);
 }
+void PageDensityAnalysis::on_btnAnalysis5_clicked() {
+	emit analisis5();
+}
+
 
 
 
 void PageDensityAnalysis::on_btnView6_clicked() {
 
-	ui->btnView6->setIcon(QIcon("eye_off.png"));
+	ui->btnView6->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	emit visibility6(visible6);
 
 	if (*visible6 == false) {
-		ui->btnView6->setIcon(QIcon("eye_off.png"));
+		ui->btnView6->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	}
 	else {
-		ui->btnView6->setIcon(QIcon("eye_on.png"));
+		ui->btnView6->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_on.png"));
 	}
 }
 
@@ -240,18 +265,21 @@ void PageDensityAnalysis::on_btnColor6_clicked() {
 
 	emit colority6(newColor);
 }
+void PageDensityAnalysis::on_btnAnalysis6_clicked() {
+	emit analisis6();
+}
 
 
 void PageDensityAnalysis::on_btnView7_clicked() {
 
-	ui->btnView7->setIcon(QIcon("eye_off.png"));
+	ui->btnView7->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	emit visibility7(visible7);
 
 	if (*visible7 == false) {
-		ui->btnView7->setIcon(QIcon("eye_off.png"));
+		ui->btnView7->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_off.png"));
 	}
 	else {
-		ui->btnView7->setIcon(QIcon("eye_on.png"));
+		ui->btnView7->setIcon(QIcon("D:/prueba/BoneDensityApp/build/Debug/eye_on.png"));
 	}
 }
 
@@ -272,3 +300,7 @@ void PageDensityAnalysis::on_btnColor7_clicked() {
 
 	emit colority7(newColor);
 }
+void PageDensityAnalysis::on_btnAnalysis7_clicked() {
+	emit analisis7();
+}
+

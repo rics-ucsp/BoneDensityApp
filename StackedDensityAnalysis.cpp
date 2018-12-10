@@ -58,7 +58,19 @@
 #include <vtkImageSliceMapper.h>
 #include <vtkImageSlice.h>
 #include <vtkImageProperty.h>
-///
+#include <vtkImageActor.h>
+#include <vtkTextActor.h>
+
+
+#include <chrono>
+//glcm libs
+#include <iostream>
+#include <opencv2\opencv.hpp>
+using namespace cv;
+using namespace std;
+#include "glcm/AppGlcm.h"
+
+
 StackedDensityAnalysis::StackedDensityAnalysis(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::StackedDensityAnalysis)
@@ -88,15 +100,10 @@ void StackedDensityAnalysis::multiplanar_reconstruction(std::string filename) {
 	
 	vtkSmartPointer<vtkJPEGReader> readerJPG = vtkSmartPointer<vtkJPEGReader>::New();
 	readerJPG->SetDataByteOrderToLittleEndian();
-
-	readerJPG->SetFilePrefix("C:/Users/Fil/Desktop/jpg-knee");
-	//reader->SetDataSpacing(3.2, 3.2, 20);
-	//reader->SetDataSpacing(40, 40, 40);
-	readerJPG->SetFilePattern("%s/CT-Knee.379x229x305_%03d.jpg");
+	readerJPG->SetFilePrefix("D:/knee-jpg"); 
+	
+	readerJPG->SetFilePattern("%s/CT-Knee.379x229x305_%03d.jpg");		   
 	readerJPG->SetDataExtent(0, 379, 0, 229, 0, 305);
-
-	/*vtkSmartPointer< vtkDICOMImageReader > reader = vtkSmartPointer< vtkDICOMImageReader >::New();
-	reader->SetDirectoryName(filename.c_str());*/
 
 	readerJPG->Update();
 	int imageDims[3];
@@ -105,17 +112,18 @@ void StackedDensityAnalysis::multiplanar_reconstruction(std::string filename) {
 	for (int i = 0; i < 3; i++)
 		riw[i] = vtkSmartPointer< vtkResliceImageViewer >::New();
 
-	this->ui->view_dicom_1->SetRenderWindow(riw[2]->GetRenderWindow());
+	/*this->ui->view_dicom_1->SetRenderWindow(riw[2]->GetRenderWindow());
 	riw[2]->SetupInteractor(this->ui->view_dicom_1->GetRenderWindow()->GetInteractor());
 
 	this->ui->view_dicom_2->SetRenderWindow(riw[0]->GetRenderWindow());
 	riw[0]->SetupInteractor(this->ui->view_dicom_2->GetRenderWindow()->GetInteractor());
 
 	this->ui->view_dicom_3->SetRenderWindow(riw[1]->GetRenderWindow());
-	riw[1]->SetupInteractor(this->ui->view_dicom_3->GetRenderWindow()->GetInteractor());
+	riw[1]->SetupInteractor(this->ui->view_dicom_3->GetRenderWindow()->GetInteractor());*/
 
 	std::vector<std::pair<int, int>> bounds(3, std::make_pair(0, 0));
 
+	/*
 	for (int i = 0; i < 3; i++) {
 		vtkResliceCursorLineRepresentation *rep = vtkResliceCursorLineRepresentation::SafeDownCast(riw[i]->GetResliceCursorWidget()->GetRepresentation());
 		riw[i]->SetResliceCursor(riw[i]->GetResliceCursor());
@@ -152,76 +160,22 @@ void StackedDensityAnalysis::multiplanar_reconstruction(std::string filename) {
 		riw[i]->GetRenderer()->ResetCamera();
 		riw[i]->SliceScrollOnMouseWheelOff();
 	}
-
-	/*ui->scroll_axial->setMinimum(bounds[2].first);
-	ui->scroll_axial->setMaximum(bounds[2].second);
-	ui->scroll_sagittal->setMinimum(bounds[0].first);
-	ui->scroll_sagittal->setMaximum(bounds[0].second);
-	ui->scroll_coronal->setMinimum(bounds[1].first);
-	ui->scroll_coronal->setMaximum(bounds[1].second);*/
-
-	/*vtkSmartPointer<vtkCellPicker> picker = vtkSmartPointer<vtkCellPicker>::New();
-	picker->SetTolerance(0.005);
-
-	vtkSmartPointer<vtkProperty> ipwProp = vtkSmartPointer<vtkProperty>::New();
-	ren = vtkSmartPointer< vtkRenderer >::New();
-
-	this->ui->view4->GetRenderWindow()->AddRenderer(ren);
-	vtkRenderWindowInteractor *iren = this->ui->view4->GetInteractor();*/
-
-	/*for (int i = 0; i < 3; i++) {
-		planeWidget[i] = vtkSmartPointer<vtkImagePlaneWidget>::New();
-		planeWidget[i]->SetInteractor(iren);
-		planeWidget[i]->SetPicker(picker);
-		planeWidget[i]->RestrictPlaneToVolumeOn();
-		double color[3] = { 0, 0, 0 };
-		color[i] = 1;
-		planeWidget[i]->GetPlaneProperty()->SetColor(color);
-
-		color[0] /= 4.0;
-		color[1] /= 4.0;
-		color[2] /= 4.0;
-		riw[i]->GetRenderer()->SetBackground(color);
-
-		planeWidget[i]->SetTexturePlaneProperty(ipwProp);
-		planeWidget[i]->TextureInterpolateOff();
-		planeWidget[i]->SetResliceInterpolateToLinear();
-		planeWidget[i]->SetInputConnection(reader->GetOutputPort());
-		planeWidget[i]->SetPlaneOrientation(i);
-		planeWidget[i]->SetSliceIndex(imageDims[i] / 2);
-
-		planeWidget[i]->DisplayTextOn();
-		planeWidget[i]->SetDefaultRenderer(ren);
-		planeWidget[i]->SetWindowLevel(1358, -27);
-		planeWidget[i]->On();
-		planeWidget[i]->InteractionOn();
-	}*/
-
-	//vtkSmartPointer<vtkResliceCursorCallback> cbk = vtkSmartPointer<vtkResliceCursorCallback>::New();
-	//for (int i = 0; i < 3; i++) {
-	//	cbk->IPW[i] = planeWidget[i];
-	//	cbk->RCW[i] = riw[i]->GetResliceCursorWidget();
-	//	riw[i]->GetResliceCursorWidget()->AddObserver(vtkResliceCursorWidget::ResliceAxesChangedEvent, cbk);
-	//	riw[i]->GetResliceCursorWidget()->AddObserver(vtkResliceCursorWidget::WindowLevelEvent, cbk);
-	//	riw[i]->GetResliceCursorWidget()->AddObserver(vtkResliceCursorWidget::ResliceThicknessChangedEvent, cbk);
-	//	riw[i]->GetResliceCursorWidget()->AddObserver(vtkResliceCursorWidget::ResetCursorEvent, cbk);
-	//	riw[i]->GetInteractorStyle()->AddObserver(vtkCommand::WindowLevelEvent, cbk);
-	//	// Make them all share the same color map.
-	//	riw[i]->SetLookupTable(riw[0]->GetLookupTable());
-	//	planeWidget[i]->GetColorMap()->SetLookupTable(riw[0]->GetLookupTable());
-	//	//planeWidget[i]->GetColorMap()->SetInput(riw[i]->GetResliceCursorWidget()->GetResliceCursorRepresentation()->GetColorMap()->GetInput());
-	//	planeWidget[i]->SetColorMap(riw[i]->GetResliceCursorWidget()->GetResliceCursorRepresentation()->GetColorMap());
-	//}
-
+		
+	*/
 	//volume_rendering(reader);
-	this->ui->view_dicom_1->show();
+
+	/*this->ui->view_dicom_1->show();
 	this->ui->view_dicom_2->show();
 	this->ui->view_dicom_3->show();
+	*/
+
+	
+
 }
 
 void StackedDensityAnalysis::selection2D() {
 
-	//(ui->view_dicom_3)->GetRenderWindow()->AddRenderer(renderer_dicom_3);
+	/*
 
 	// Create an image
 	drawing = vtkSmartPointer<vtkImageCanvasSource2D>::New();
@@ -247,10 +201,146 @@ void StackedDensityAnalysis::selection2D() {
 	logoWidget->On();
 
 	(ui->view_dicom_3)->GetRenderWindow()->Render();
-	(ui->view_dicom_3)->show();
+	(ui->view_dicom_3)->show();*/
 
+	/*string inputFilename = "D:/prueba/BoneDensityApp/build/Debug/0.jpg";
+	readerJPG2 = vtkSmartPointer<vtkJPEGReader>::New();
+	readerJPG2->SetFileName(inputFilename.c_str());
+	readerJPG2->Update();
+
+	int extent[6];
+	readerJPG2->GetOutput()->GetExtent(extent);
+
+	imageActor = vtkSmartPointer<vtkImageActor>::New();
+	imageActor->GetMapper()->SetInputConnection(readerJPG2->GetOutputPort());
+
+	renderWindow = vtkSmartPointer<vtkRenderWindow>::New();
+	vtkSmartPointer<vtkRenderWindowInteractor> interactor = (ui->view_dicom_2)->GetRenderWindow()->GetInteractor();
+	vtkSmartPointer<vtkInteractorStyleImage> style = vtkSmartPointer<vtkInteractorStyleImage>::New();
+	interactor->SetInteractorStyle(style);
+
+	borderWidget = vtkSmartPointer<vtkBorderWidget>::New();
+	//borderWidget->SetInteractor((ui->view_dicom_2)->GetRenderWindow()->GetInteractor());
+	borderWidget->SetInteractor(interactor);
+
+	static_cast<vtkBorderRepresentation*>  (borderWidget->GetRepresentation())->GetBorderProperty()->SetColor(0, 1, 0);
+	static_cast<vtkBorderRepresentation*>  (borderWidget->GetRepresentation())->SetPosition(0.5, 0.5);
+	static_cast<vtkBorderRepresentation*>  (borderWidget->GetRepresentation())->SetPosition2(.1, .1);
+
+	borderWidget->SelectableOff();
+	//(ui->view_dicom_2)->GetRenderWindow()->GetInteractor()->SetRenderWindow(renderWindow);
+	interactor->SetRenderWindow(renderWindow);
+	//this->ui->view_dicom_2->SetRenderWindow(renderWindow);
+
+	leftRenderer = vtkSmartPointer<vtkRenderer>::New();
+	renderWindow->AddRenderer(leftRenderer);
+	leftRenderer->AddActor(imageActor);
+	//leftRenderer->ResetCamera();
+
+	borderCallback = vtkSmartPointer<vtkBorderCallback2>::New();
+	borderCallback->SetLeftRenderer(leftRenderer);
+	borderWidget->AddObserver(vtkCommand::InteractionEvent, borderCallback);
+
+	(ui->view_dicom_2)->GetRenderWindow()->Render();
+	borderWidget->On();
+	(ui->view_dicom_2)->show();
+	*/
+	
 
 }
+
+void StackedDensityAnalysis::analisisTemplate(string name) {
+	AppGlcm* app = getApplication();
+	app->setNumClass(2);/// tipo de calsificacion: Binaria: 2 clases
+	app->setNameBD(name);
+	app->setNameResults("out1.txt");
+	app->initProcessing(10, 12, 8);
+	app->offLineProcessing();
+	std::vector<double> resultVector;
+	std::vector<string> resultVectorNames;
+	app->endProcessing(resultVector, resultVectorNames);
+
+	for (int i = 0; i < resultVector.size(); ++i) {
+		string key = resultVectorNames[i];
+		double value = resultVector[i];
+		cout << key << ":";
+		cout << value << endl;
+	}
+
+
+	double Energy_ = resultVector[0];
+	double Maximun_ = resultVector[1];
+	double Disimilarity_ = resultVector[2];
+	double Contrast_ = resultVector[3];
+	double Homogeneity_ = resultVector[4];
+	double Correlation_ = resultVector[5];
+	double Entropy_ = resultVector[6] / 4;
+
+	QString Energy;				Energy += "  1:  Energy			: "; Energy += QString::number(Energy_); Energy += "\n";
+	QString Maximun;			Maximun += "  2:  Maximun			: "; Maximun += QString::number(Maximun_); Maximun += "\n";
+	QString Disimilarity;		Disimilarity += "  3:  Disimilarity		: "; Disimilarity += QString::number(Disimilarity_); Disimilarity += "\n";
+	QString Contrast;			Contrast += "  4:  Contrast			: "; Contrast += QString::number(Contrast_); Contrast += "\n";
+	QString Homog;				Homog += "  5:  Homogeneity		: "; Homog += QString::number(Homogeneity_); Homog += "\n";
+	QString Correlation;		Correlation += "  6:  Correlation		: "; Correlation += QString::number(Correlation_); Correlation += "\n";
+	QString Entropy;			Entropy += "  7:  Entropy			: "; Entropy += QString::number(Entropy_); Entropy += "\n";
+
+
+	double final_value = (Energy_ + Maximun_ + Contrast_ + Entropy_) / 4;
+	cout << "final:" << final_value << endl;
+	QString diagnost;
+
+	if (final_value < 1 && final_value > 0.55) {
+		diagnost = "Densidad Mineral Osea Normal";
+	}
+	if (final_value < 0.55 && final_value > 0.33) {
+		diagnost = "Osteopenia";
+	}
+	if (final_value < 0.33 && final_value > 0.22) {
+		diagnost = "Osteoporosis Leve";
+	}
+	if (final_value < 0.22 && final_value > 0.11) {
+		diagnost = "Osteoporosis Moderada ";
+	}
+	if (final_value < 0.11 && final_value > 0) {
+		diagnost = "Osteoporosis Severa";
+	}
+	_sleep(3000);
+
+
+
+	QMessageBox messageBox;
+	messageBox.setText("Analisis Realizado:\n ---------------------------------------------------------\n");
+	messageBox.setBaseSize(QSize(500, 120));
+	messageBox.setDetailedText(Energy + Maximun + Disimilarity + Contrast + Homog + Correlation + Entropy + "\n----------------------------------\n" + "Densidad Mineral Osea	:" + QString::number(final_value) + "\n" + "Resultado	:"+diagnost);
+
+	QAbstractButton * detailsButton = NULL;
+
+	foreach(QAbstractButton *button, messageBox.buttons()) {
+		if (messageBox.buttonRole(button) == QMessageBox::ActionRole) {
+			detailsButton = button;
+			break;
+
+		}
+
+	}
+	QList<QTextEdit*> textBoxes = messageBox.findChildren<QTextEdit*>();
+	if (textBoxes.size())
+		textBoxes[0]->setFixedSize(600, 200);
+
+	// If we have found the details button, then click it to expand the
+	// details area.
+	if (detailsButton) {
+		detailsButton->click();
+
+	}
+	messageBox.exec();
+}
+
+void StackedDensityAnalysis::analisis2D() {
+	analisisTemplate("D:/prueba/BoneDensityApp/build/Debug/in (1).data");
+}
+
+
 
 void StackedDensityAnalysis::init() {
 
@@ -284,6 +374,24 @@ void StackedDensityAnalysis::init() {
 	for (register int i = 0; i < 7; ++i){
 		renderVTK(archivosVtk[i], *(ui->view_volum), colores[i], mapper[i], actor[i]);
 	}
+	vtkSmartPointer<vtkTextActor> textActor =
+		vtkSmartPointer<vtkTextActor>::New();
+	textActor->SetInput("Criterios de Densidad Osea:");
+	textActor->SetPosition(10, 670);
+	textActor->GetTextProperty()->SetFontSize(14);
+	textActor->GetTextProperty()->SetColor(0.6, 1.0, 0.4);
+	renderer->AddActor2D(textActor);
+
+	vtkSmartPointer<vtkTextActor> textActor2 =
+		vtkSmartPointer<vtkTextActor>::New();
+	textActor2->SetInput(" [1.00 -> 0.55] Densidad Normal\n [0.55 -> 0.33] Osteopenia\n [0.33 -> 0.22] Osteoporosis Leve\n [0.22 -> 0.11] Osteoporosis Moderada \n [0.11 -> 0.00] Osteoporosis Severa");
+	textActor2->SetPosition(10, 590);
+	textActor2->GetTextProperty()->SetFontSize(14);
+	textActor2->GetTextProperty()->SetColor(1.0, 1.0, 1.0);
+	renderer->AddActor2D(textActor2);
+
+	(ui->view_volum)->GetRenderWindow()->Render();
+	(ui->view_volum)->show();
 
 }
 
@@ -381,6 +489,10 @@ void StackedDensityAnalysis::colority1(QColor newColor) {
 	(ui->view_volum)->show();
 }
 
+void StackedDensityAnalysis::analisis1() {
+	analisisTemplate("D:/prueba/BoneDensityApp/build/Debug/in (1).data");
+}
+
 
 void StackedDensityAnalysis::visibility2(bool* visible) {
 
@@ -430,6 +542,9 @@ void StackedDensityAnalysis::colority2(QColor newColor) {
 	(ui->view_volum)->GetRenderWindow()->AddRenderer(renderer);
 	(ui->view_volum)->GetRenderWindow()->Render();
 	(ui->view_volum)->show();
+}
+void StackedDensityAnalysis::analisis2() {
+	analisisTemplate("D:/prueba/BoneDensityApp/build/Debug/in (2).data");
 }
 
 
@@ -482,6 +597,9 @@ void StackedDensityAnalysis::colority3(QColor newColor) {
 	(ui->view_volum)->GetRenderWindow()->Render();
 	(ui->view_volum)->show();
 }
+void StackedDensityAnalysis::analisis3() {
+	analisisTemplate("D:/prueba/BoneDensityApp/build/Debug/in (3).data");
+}
 
 
 void StackedDensityAnalysis::visibility4(bool* visible) {
@@ -532,6 +650,9 @@ void StackedDensityAnalysis::colority4(QColor newColor) {
 	(ui->view_volum)->GetRenderWindow()->AddRenderer(renderer);
 	(ui->view_volum)->GetRenderWindow()->Render();
 	(ui->view_volum)->show();
+}
+void StackedDensityAnalysis::analisis4() {
+	analisisTemplate("D:/prueba/BoneDensityApp/build/Debug/in (4).data");
 }
 
 
@@ -584,6 +705,9 @@ void StackedDensityAnalysis::colority5(QColor newColor) {
 	(ui->view_volum)->GetRenderWindow()->Render();
 	(ui->view_volum)->show();
 }
+void StackedDensityAnalysis::analisis5() {
+	analisisTemplate("D:/prueba/BoneDensityApp/build/Debug/in (5).data");
+}
 
 
 void StackedDensityAnalysis::visibility6(bool* visible) {
@@ -635,6 +759,9 @@ void StackedDensityAnalysis::colority6(QColor newColor) {
 	(ui->view_volum)->GetRenderWindow()->Render();
 	(ui->view_volum)->show();
 }
+void StackedDensityAnalysis::analisis6() {
+	analisisTemplate("D:/prueba/BoneDensityApp/build/Debug/in (6).data");
+}
 
 
 void StackedDensityAnalysis::visibility7(bool* visible) {
@@ -685,5 +812,8 @@ void StackedDensityAnalysis::colority7(QColor newColor) {
 	(ui->view_volum)->GetRenderWindow()->AddRenderer(renderer);
 	(ui->view_volum)->GetRenderWindow()->Render();
 	(ui->view_volum)->show();
+}
+void StackedDensityAnalysis::analisis7() {
+	analisisTemplate("D:/prueba/BoneDensityApp/build/Debug/in (7).data");
 }
 

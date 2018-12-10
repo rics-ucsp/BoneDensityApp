@@ -166,7 +166,8 @@ void StackedMultiplanarReconstruction::multiplanar_reconstruction(std::string fi
 	vtkSmartPointer<vtkJPEGReader> reader =		vtkSmartPointer<vtkJPEGReader>::New();
 	reader->SetDataByteOrderToLittleEndian();
 	//		jpegReader->SetFilePattern("");
-	reader->SetFilePrefix("C:/Users/Fil/Desktop/jpg-knee");
+	//reader->SetFilePrefix("C:/Users/Fil/Desktop/jpg-knee");
+	reader->SetFilePrefix("D:/knee-jpg");
 	//reader->SetDataSpacing(3.2, 3.2, 20);
 	//reader->SetDataSpacing(40, 40, 40);
 	reader->SetFilePattern("%s/CT-Knee.379x229x305_%03d.jpg");
