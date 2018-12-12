@@ -23,7 +23,7 @@
       <item>
        <widget class="QPushButton" name="btn2Danalisis">
         <property name="text">
-         <string>Analizar región</string>
+         <string>...</string>
         </property>
         <property name="icon">
          <iconset resource="icons.qrc">
