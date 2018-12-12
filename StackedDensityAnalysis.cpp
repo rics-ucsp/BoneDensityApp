@@ -62,7 +62,7 @@
 #include <vtkTextActor.h>
 
 
-#include <chrono>
+#include <chrono> ////_sleep(00);
 //glcm libs
 #include <iostream>
 #include <opencv2\opencv.hpp>
@@ -304,14 +304,14 @@ void StackedDensityAnalysis::analisisTemplate(string name) {
 	if (final_value < 0.11 && final_value > 0) {
 		diagnost = "Osteoporosis Severa";
 	}
-	_sleep(3000);
+	
 
 
 
 	QMessageBox messageBox;
 	messageBox.setText("Analisis Realizado:\n ---------------------------------------------------------\n");
-	messageBox.setBaseSize(QSize(500, 120));
-	messageBox.setDetailedText(Energy + Maximun + Disimilarity + Contrast + Homog + Correlation + Entropy + "\n----------------------------------\n" + "Densidad Mineral Osea	:" + QString::number(final_value) + "\n" + "Resultado	:"+diagnost);
+	messageBox.setBaseSize(QSize(450, 120));
+	messageBox.setDetailedText(Energy + Maximun + Disimilarity + Contrast + Homog + Correlation + Entropy + "\n----------------------------------\n" + "Densidad Mineral Osea	:" + QString::number(final_value) + "\n" + "Resultado		:"+diagnost);
 
 	QAbstractButton * detailsButton = NULL;
 
