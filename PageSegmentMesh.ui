@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>PageSegmentMesh</class>
  <widget class="QWidget" name="PageSegmentMesh">
@@ -28,7 +28,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="segment_isovalues"/>
+       <widget class="QLineEdit" name="segment_isovalues">
+        <property name="text">
+         <string>100</string>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QLabel" name="label_4">
@@ -37,28 +41,22 @@
         </property>
        </widget>
       </item>
-     <item>
-       <widget class="QDoubleSpinBox" name="construction_threshold_isovalues"/>
-     </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="construction_threshold_isovalues">
+        <property name="value">
+         <double>0.500000000000000</double>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
    <item>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
-      <string>Segmentos</string>
+      <string>Material</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Número de regiones</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="segment_regions_number"/>
-      </item>
       <item>
        <widget class="QCheckBox" name="Checkbox">
         <property name="text">
