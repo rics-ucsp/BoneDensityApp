@@ -84,7 +84,7 @@ void StackedSegmentMesh::init() {
 	float p5[] = { 0.9804, 0.5020, 0.4471 };
 
 	float p3[] = { 0.9608, 0.8706, 0.7020 }; float p4[] = { 0.9608, 0.8706, 0.7020 };
-	QVTKWidgetRenderer::renderVTK("../Resources/knees/segment_knee_mesh_region_1.vtk", *(ui->stacked_segment_1), 1.0, p3, p4);
+	QVTKWidgetRenderer::renderVTK("../Resources/knees/segment_knee_mesh_region_1.vtk", *(ui->stacked_segment_2), 1.0, p3, p4);
 }
 
 void StackedSegmentMesh::segmentMesh() {
@@ -115,11 +115,11 @@ void StackedSegmentMesh::segmentMesh() {
 	}
 
 	for (register int i = 0; i < 7; ++i) {
-		renderVTK(archivosVtk[i], *(ui->stacked_segment_2), colores[i], mapper[i], actor[i]);
+		renderVTK(archivosVtk[i], *(ui->stacked_segment_1), colores[i], mapper[i], actor[i]);
 	}
 
-	(ui->stacked_segment_2)->GetRenderWindow()->Render();
-	(ui->stacked_segment_2)->show();
+	(ui->stacked_segment_1)->GetRenderWindow()->Render();
+	(ui->stacked_segment_1)->show();
 
 }
 
